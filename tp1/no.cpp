@@ -2,18 +2,27 @@
 #include "funcoes.h"
 No::No(std::string label){
     this->label = label;
+    this->filhos = new std::vector<No*>;
+}
+
+No::No(std::string label, bool fimDeCadeia, std::vector<No*>* filhos){
+    this->label = label;
+    this->fimDeCadeia = fimDeCadeia;
+    this->filhos = filhos;
 }
 
 No::~No(){
 
 }
 
+/*
 bool No::fimDeCadeia(){
-    if (this->filhos.size() == 0)
+    if (this->filhos->size() == 0)
         return true;
     else
         return false;
 }
+*/
 
 No* No::buscar(std::string cadeia){
     /*
@@ -36,20 +45,20 @@ No* No::buscar(std::string cadeia){
 
     */
     unsigned int iguais = qntdIguais(cadeia, this->label);
-    if (cadeia == this->label && this->fimDeCadeia()){ //match
+    if (cadeia == this->label && this->fimDeCadeia){ //match
         return this;
     } else if (iguais > 0){ // prefixo bate, então consome e busca o resto
         // pega o resto dos caracteres que são diferentes
         std::string resto = cadeia.substr(iguais);
 
         // procura nos filhos se algum tem prefixo em comum
-        auto it = this->filhos.begin();
+        auto it = this->filhos->begin();
         iguais = qntdIguais(resto, (*it)->getLabel());
-        for (; it != this->filhos.end() && iguais == 0; it++){
+        for (; it != this->filhos->end() && iguais == 0; it++){
             iguais = qntdIguais(resto, (*it)->getLabel());
         }
 
-        if (it != this->filhos.end()) // casou com algum filho
+        if (it != this->filhos->end()) // casou com algum filho
             (*it)->buscar(resto);
 
     }
@@ -57,8 +66,54 @@ No* No::buscar(std::string cadeia){
     return nullptr;
 }
 
+void No::inserir(std::string cadeia){
+    unsigned int iguais = qntdIguais(cadeia, this->label);
+    
+    // cadeia já está inserida
+    if (cadeia == this->label && this->fimDeCadeia){
+        return;
+    }
+    // cadeia já estava inserida, mas só como prefixo
+    else if (cadeia == this->label){
+        this->fimDeCadeia = true;
+    }
+    // prefixo bate, então consome e insere o resto
+    else if (iguais > 0 && iguais >= this->label.length()){ 
+        // pega o resto dos caracteres que são diferentes
+        std::string resto = cadeia.substr(iguais);
+
+        // procura nos filhos se algum tem prefixo em comum
+        auto it = this->filhos->begin();
+        iguais = qntdIguais(resto, (*it)->getLabel());
+        for (; it != this->filhos->end() && iguais == 0; it++){
+            iguais = qntdIguais(resto, (*it)->getLabel());
+        }
+
+        // se tem prefixo em comum, então insere o resto da cadeia no nó
+        if (it != this->filhos->end()){
+            (*it)->inserir(resto);
+        }
+        // senão, cria novo nó e insere como filho
+        else {
+            No* no = new No(resto);
+            this->filhos->push_back(no);
+        }
+
+    }
+    // casa parcialmente com o prefixo, então cria novo nó e coloca os dois como filhos
+    else if (iguais > 0 && cadeia.length() < this->label.length()){
+        No* noCadeia = new No(cadeia.substr(iguais));
+        No* noLabel = new No(this->label.substr(iguais), this->fimDeCadeia, this->filhos);
+
+        this->label = this->label.substr(0, iguais);
+        this->filhos = new std::vector<No*>;
+        this->filhos->push_back(noCadeia);
+        this->filhos->push_back(noLabel);
+    }
+}
+
 std::vector<No*>* No::getFilhos(){
-    return &this->filhos;
+    return this->filhos;
 }
 
 std::string No::getLabel(){
