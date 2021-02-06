@@ -12,11 +12,13 @@ private:
 
 public:
     No(std::string label);
+    No(std::string label, bool fimDeCadeia);
     No(std::string label, bool fimDeCadeia, std::vector<No*>* filhos);
     ~No();
     //bool fimDeCadeia();
     No* buscar(std::string cadeia);
     void inserir(std::string cadeia);
+    void imprimir();
 
     std::vector<No*>* getFilhos();
     std::string getLabel();

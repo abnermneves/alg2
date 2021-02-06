@@ -1,19 +1,22 @@
 #include "trie.h"
 #include "funcoes.h"
+#include <iostream>
 
 Trie::Trie(){
-    this->raiz = nullptr;
+    this->raiz = new No("", true);
 }
 
 Trie::~Trie(){
 
 }
 
-void Trie::inserir(std::string s){
-
+void Trie::inserir(std::string cadeia){
+    this->raiz->inserir(cadeia);
 }
 
 void Trie::buscar(std::string cadeia){
+    No* res = this->raiz->buscar(cadeia);
+    std::cout << res->getLabel() << std::endl;
     /*
     três casos:
     1) dar match inteiramente com algum filho do nó de mesmo tamanho
@@ -60,4 +63,8 @@ void Trie::buscar(std::string cadeia){
 
 void Trie::remover(std::string s){
 
+}
+
+void Trie::imprimir(){
+    this->raiz->imprimir();
 }

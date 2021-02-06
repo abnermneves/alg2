@@ -1,7 +1,16 @@
 #include "no.h"
 #include "funcoes.h"
+#include <iostream>
+
 No::No(std::string label){
     this->label = label;
+    this->fimDeCadeia = false;
+    this->filhos = new std::vector<No*>;
+}
+
+No::No(std::string label, bool fimDeCadeia){
+    this->label = label;
+    this->fimDeCadeia = fimDeCadeia;
     this->filhos = new std::vector<No*>;
 }
 
@@ -78,19 +87,31 @@ void No::inserir(std::string cadeia){
         this->fimDeCadeia = true;
     }
     // prefixo bate, então consome e insere o resto
-    else if (iguais > 0 && iguais >= this->label.length()){ 
+    else if (iguais >= 0 && iguais >= this->label.length()){ 
         // pega o resto dos caracteres que são diferentes
         std::string resto = cadeia.substr(iguais);
 
-        // procura nos filhos se algum tem prefixo em comum
         auto it = this->filhos->begin();
-        iguais = qntdIguais(resto, (*it)->getLabel());
-        for (; it != this->filhos->end() && iguais == 0; it++){
+
+        // se tem algum filho, calcula qntdIguais com o primeiro
+        if (it != this->filhos->end()){
             iguais = qntdIguais(resto, (*it)->getLabel());
+            it++;
+        }
+        else{
+            iguais = 0;
+        }
+        
+        // procura nos filhos se algum tem prefixo em comum
+        while (it != this->filhos->end() && iguais == 0){
+            iguais = qntdIguais(resto, (*it)->getLabel());
+            it++;
         }
 
-        // se tem prefixo em comum, então insere o resto da cadeia no nó
-        if (it != this->filhos->end()){
+        // se tem prefixo em comum, então insere o resto da cadeia no nó dele
+        if (iguais > 0){
+            it--;
+            std::cout << "Achou em comum: " << (*it)->getLabel() << std::endl;
             (*it)->inserir(resto);
         }
         // senão, cria novo nó e insere como filho
@@ -118,4 +139,21 @@ std::vector<No*>* No::getFilhos(){
 
 std::string No::getLabel(){
     return this->label;
+}
+
+void No::imprimir(){
+    std::cout << "-----------------------" << std::endl
+              << this->label << std::endl;
+    
+    for (auto it = this->filhos->begin(); it != this->filhos->end(); it++){
+        std::cout << (*it)->getLabel() << "   |   ";
+    }
+
+    std::cout << std::endl
+              << "-----------------------" << std::endl;
+
+    for (auto it = this->filhos->begin(); it != this->filhos->end(); it++){
+        (*it)->imprimir();
+    }
+
 }

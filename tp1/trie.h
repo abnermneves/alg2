@@ -11,10 +11,10 @@ private:
 public:
     Trie();
     ~Trie();
-    void inserir(std::string texto);
-    void buscar(std::string padrao);
-    void remover(std::string padrao);
-
+    void inserir(std::string cadeia);
+    void buscar(std::string cadeia);
+    void remover(std::string cadeia);
+    void imprimir();
 };
 
 #endif
