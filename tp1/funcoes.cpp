@@ -8,10 +8,7 @@ unsigned int qntdIguais(std::string s1, std::string s2){
     
     unsigned int i = 0;
 
-    for (; i < s1.length() && i < s2.length() && s1[i] == s2[i]; i++){
-        
-    std::cout << "ok" << std::endl;
-    }
+    for (; i < s1.length() && i < s2.length() && s1[i] == s2[i]; i++);
 
     return i;
 }

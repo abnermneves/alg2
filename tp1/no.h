@@ -19,6 +19,7 @@ public:
     No* buscar(std::string cadeia);
     void inserir(std::string cadeia);
     void imprimir();
+    void imprimirCadeias(std::string prefixo);
 
     std::vector<No*>* getFilhos();
     std::string getLabel();

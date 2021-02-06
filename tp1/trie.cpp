@@ -68,3 +68,7 @@ void Trie::remover(std::string s){
 void Trie::imprimir(){
     this->raiz->imprimir();
 }
+
+void Trie::imprimirCadeias(){
+    this->raiz->imprimirCadeias("");
+}

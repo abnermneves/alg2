@@ -111,22 +111,22 @@ void No::inserir(std::string cadeia){
         // se tem prefixo em comum, então insere o resto da cadeia no nó dele
         if (iguais > 0){
             it--;
-            std::cout << "Achou em comum: " << (*it)->getLabel() << std::endl;
             (*it)->inserir(resto);
         }
         // senão, cria novo nó e insere como filho
         else {
-            No* no = new No(resto);
+            No* no = new No(resto, true);
             this->filhos->push_back(no);
         }
 
     }
     // casa parcialmente com o prefixo, então cria novo nó e coloca os dois como filhos
-    else if (iguais > 0 && cadeia.length() < this->label.length()){
-        No* noCadeia = new No(cadeia.substr(iguais));
+    else if (iguais > 0 && iguais < this->label.length()){
+        No* noCadeia = new No(cadeia.substr(iguais), true);
         No* noLabel = new No(this->label.substr(iguais), this->fimDeCadeia, this->filhos);
 
         this->label = this->label.substr(0, iguais);
+        this->fimDeCadeia = false;
         this->filhos = new std::vector<No*>;
         this->filhos->push_back(noCadeia);
         this->filhos->push_back(noLabel);
@@ -154,6 +154,17 @@ void No::imprimir(){
 
     for (auto it = this->filhos->begin(); it != this->filhos->end(); it++){
         (*it)->imprimir();
+    }
+
+}
+
+void No::imprimirCadeias(std::string prefixo){
+    prefixo += this->label;
+    if (this->fimDeCadeia){
+        std::cout << prefixo << std::endl;
+    }
+    for (auto it = this->filhos->begin(); it != this->filhos->end(); it++){
+        (*it)->imprimirCadeias(prefixo);
     }
 
 }

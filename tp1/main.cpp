@@ -3,28 +3,30 @@
 #include "trie.h"
 
 int main (int argc, char* argv[]) {
-    std::string s1 = "";
 /*
+    std::string s1, s2;
+    std::cin >> s1 >> s2;
+    std::string s3 = s1 + s2;
+    std::cout << s3 << std::endl;
+    std::string s1 = "";
     std::string s2 = "";
-    //std::string s1, s2;
-    //std:: cin >> s1 >> s2;
     bool b = s1 == s2;
     std::cout << qntdIguais(s1, s2) << " " << s1.length() << " " << b << std::endl;
     std::cout << s1.substr(0);
 
-    */
    //if (s1)
      std::cout << s1.length() << std::endl;
+    */
 
     Trie t = Trie();
     /*
+    */
     t.inserir("cabeça");
     t.inserir("verde");
     t.inserir("marrom");
     t.inserir("maravilha");
     t.inserir("cacto");
     t.inserir("ovo");
-    */
     t.inserir("minimize");
     t.inserir("inimize");
     t.inserir("nimize");
@@ -35,6 +37,7 @@ int main (int argc, char* argv[]) {
     t.inserir("e");
     /*
     */
-    t.imprimir();
+    t.imprimirCadeias();
+
     return 0;
 }
