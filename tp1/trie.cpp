@@ -12,7 +12,7 @@ void Trie::inserir(std::string s){
 
 }
 
-void Trie::buscar(std::string padrao){
+void Trie::buscar(std::string cadeia){
     /*
     três casos:
     1) dar match inteiramente com algum filho do nó de mesmo tamanho
@@ -24,9 +24,10 @@ void Trie::buscar(std::string padrao){
     3) não dar match algum
 
     */
+    /*
 
 
-    unsigned int tamPadrao = padrao.length();
+     unsigned int tamPadrao = padrao.length();
     unsigned int j = 0;
     No* v = this->raiz;
     bool f = true;
@@ -49,7 +50,7 @@ void Trie::buscar(std::string padrao){
         }
 
     }
-
+*/
     
 }
 
