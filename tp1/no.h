@@ -6,17 +6,17 @@
 
 class No {
 private:
-    std::string texto;
+    std::string label;
     std::vector<No*> filhos;
 
 public:
-    No(std::string texto);
+    No(std::string label);
     ~No();
-    bool ehFolha();
-    No* busca(std::string padrao);
+    bool fimDeCadeia();
+    No* buscar(std::string cadeia);
 
-    std::vector<No*> getFilhos();
-    std::string getTexto();
+    std::vector<No*>* getFilhos();
+    std::string getLabel();
 };
 
 #endif

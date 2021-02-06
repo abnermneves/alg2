@@ -1,4 +1,5 @@
 #include "trie.h"
+#include "funcoes.h"
 
 Trie::Trie(){
     this->raiz = nullptr;
@@ -24,6 +25,9 @@ void Trie::buscar(std::string cadeia){
     3) não dar match algum
 
     */
+
+
+
     /*
 
 
