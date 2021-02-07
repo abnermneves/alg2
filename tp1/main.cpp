@@ -24,7 +24,7 @@ int main (int argc, char* argv[]) {
     if (operacao == 'c'){
         compressao(fin, fout);
     } else if (operacao == 'd'){
-        decompressao();
+        decompressao(fin, fout);
     } else {
 
     }

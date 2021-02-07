@@ -2,6 +2,7 @@
 #include "trie.h"
 #include <iostream>
 #include <string>
+#include <cstdio>
 
 void compressao(std::string fin, std::string fout){
     std::ifstream file(fin);
@@ -9,7 +10,6 @@ void compressao(std::string fin, std::string fout){
 
     if (!file.is_open())
         return;
-
 
     Trie d = Trie();
     std::string cadeia = "";
@@ -34,6 +34,21 @@ void compressao(std::string fin, std::string fout){
     file.close();
 }
 
-void decompressao(){
+void decompressao(std::string fin, std::string fout){
+    FILE* file;
+    file = fopen (fin.c_str(), "r");
+    if (file == nullptr)
+        return;
 
+    Trie d = Trie();
+    std::string cadeia = "";
+    int codigo;
+    char c;
+    d.inserir(cadeia);
+
+    while (fscanf(file, "(%d, '%c')", &codigo, &c) == 2){
+        std::cout << codigo << " " << c << std::endl;
+    }
+
+    fclose (file);
 }
