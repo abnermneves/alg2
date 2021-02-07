@@ -12,8 +12,10 @@ Trie::~Trie(){
 }
 
 void Trie::inserir(std::string cadeia){
-    this->raiz->inserir(cadeia, this->proximoCodigo);
-    this->proximoCodigo++;
+    if (!this->raiz->buscar(cadeia)){
+        this->raiz->inserir(cadeia, this->proximoCodigo);
+        this->proximoCodigo++;
+    }
 }
 
 No* Trie::buscar(std::string cadeia){
@@ -30,7 +32,6 @@ int Trie::codigo(std::string cadeia){
     else
         c = -1;
 
-    std::cout << c << std::endl;
     return c;
 }
 

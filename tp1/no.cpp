@@ -184,7 +184,7 @@ void No::imprimir(){
 void No::imprimirCadeias(std::string prefixo){
     prefixo += this->label;
     if (this->fimDeCadeia){
-        std::cout << prefixo << std::endl;
+        std::cout << this->codigo << ": " << prefixo << std::endl;
     }
     for (auto it = this->filhos->begin(); it != this->filhos->end(); it++){
         (*it)->imprimirCadeias(prefixo);

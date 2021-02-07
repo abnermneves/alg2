@@ -2,26 +2,29 @@
 #include <fstream>
 #include "funcoes.h"
 #include "trie.h"
+#include "lz78.h"
 
 int main (int argc, char* argv[]) {
   
 //--------------------------- FLUXO DE ARQUIVO ----------------------------//
 
-/*
     if (argc < 3)
         return 0;
 
     char operacao = argv[1][1];
-    std::cout << operacao << std::endl;
 
-    std::string fname;
-    fname = argv[2];
-    std::ifstream file(fname);
+    std::string fin, fout;
+    fin = argv[2];
 
-    if (!file.is_open())
-        return 0;
+    if (operacao == 'c'){
+        compressao(fin, fout);
+    } else if (operacao == 'd'){
+        decompressao();
+    } else {
 
+    }
 
+/*
     std::string s1, s2;
     std::cin >> s1 >> s2;
     std::string s3 = s1 + s2;
@@ -36,6 +39,7 @@ int main (int argc, char* argv[]) {
     std::cout << s1.length() << std::endl;
     */  
 
+    /*
     Trie t = Trie();
     t.inserir("cabeça");
     t.inserir("verde");
@@ -52,7 +56,6 @@ int main (int argc, char* argv[]) {
     t.inserir("ze");
     t.inserir("e");
     t.imprimir();
-    /*
     */
     /*
     t.buscar("cabeça");

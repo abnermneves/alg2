@@ -1,4 +1,4 @@
 #include <fstream>
 
-void compressao(std::ifstream file);
-void descompressao();
+void compressao(std::string fin, std::string fout);
+void decompressao();
