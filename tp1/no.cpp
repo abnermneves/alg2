@@ -60,7 +60,7 @@ No* No::buscar(std::string cadeia){
         return this;
     }
     // prefixo bate, então consome e busca o resto
-    else if (true){
+    else {
         // pega o resto dos caracteres que são diferentes
         std::string resto = cadeia.substr(iguais);
 
@@ -81,7 +81,7 @@ No* No::buscar(std::string cadeia){
             it++;
         }
 
-        // se tem prefixo em comum, então insere o resto da cadeia no nó dele
+        // se tem prefixo em comum, então busca o resto da cadeia no nó dele
         if (iguais > 0){
             it--;
             return (*it)->buscar(resto);
@@ -102,6 +102,7 @@ void No::inserir(std::string cadeia, int codigo){
     // cadeia já estava inserida, mas só como prefixo
     else if (cadeia == this->label){
         this->fimDeCadeia = true;
+        this->codigo = codigo;
     }
     // prefixo bate, então consome e insere o resto
     else if (iguais >= 0 && iguais >= this->label.length()){ 

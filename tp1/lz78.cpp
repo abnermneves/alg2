@@ -24,7 +24,7 @@ void compressao(std::string fin, std::string fout){
         }
         else {
             codigo = d.codigo(cadeia);
-            fileout << "(" << codigo << ", '" << c << "')";
+            fileout << codigo << "," << c << "|";
             d.inserir(cadeia + c);
             cadeia = "";
         }
@@ -48,7 +48,7 @@ void decompressao(std::string fin, std::string fout){
     char c;
     d.inserir(cadeia);
 
-    while (fscanf(file, "(%d, '%c')", &codigo, &c) == 2){
+    while (fscanf(file, "%d,%c|", &codigo, &c) == 2){
         cadeia = d.buscarPorCodigo(codigo);
         d.inserir(cadeia + c);
         fprintf(fileout, "%s%c", cadeia.c_str(), c);
