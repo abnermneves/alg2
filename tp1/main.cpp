@@ -19,7 +19,7 @@ int main (int argc, char* argv[]) {
 
 //---------------------- PROCESSAMENTO NO NOME DO ARQUIVO ------------------------//
 
-    if (argc == 5 && argv[3] == "-o"){
+    if (argc == 5 && argv[3][1] == 'o'){
         fout = argv[4];
     }
     else if (operacao == 'c'){

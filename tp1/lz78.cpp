@@ -30,7 +30,6 @@ void compressao(std::string fin, std::string fout){
         }
     }
     std::cout << std::endl;
-    d.imprimirCadeias();
     file.close();
     fileout.close();
 }
@@ -50,7 +49,6 @@ void decompressao(std::string fin, std::string fout){
     d.inserir(cadeia);
 
     while (fscanf(file, "(%d, '%c')", &codigo, &c) == 2){
-        std::cout << codigo << " " << c << std::endl;
         cadeia = d.buscarPorCodigo(codigo);
         d.inserir(cadeia + c);
         fprintf(fileout, "%s%c", cadeia.c_str(), c);

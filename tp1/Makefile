@@ -26,6 +26,6 @@ run: main
 	./tp1
 
 clean:
-	$(RM) -r $(OBJDIR) $(BINDIR) coverage/* *.o *.gcda *.gcno *.gcov tp1
+	$(RM) -r $(OBJDIR) $(BINDIR) coverage/* *.o *.gcda *.gcno *.gcov tp1 testes/*.z78
 
 .PHONY: clean coverage
