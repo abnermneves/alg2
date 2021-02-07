@@ -41,10 +41,6 @@ int Trie::codigo(std::string cadeia){
     return c;
 }
 
-void Trie::remover(std::string s){
-
-}
-
 void Trie::imprimir(){
     this->raiz->imprimir();
 }

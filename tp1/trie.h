@@ -15,7 +15,6 @@ public:
     No* buscar(std::string cadeia);
     std::string buscarPorCodigo(int codigo);
     int codigo(std::string cadeia);
-    void remover(std::string cadeia);
     void imprimir();
     void imprimirCadeias();
 };

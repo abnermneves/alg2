@@ -44,24 +44,17 @@ std::string No::buscarPorCodigo(int codigo, std::string prefixo){
 
 No* No::buscar(std::string cadeia){
     /*
+
     três casos:
-    1) dar match inteiramente com algum filho do nó de mesmo tamanho
-        1.1) se é uma folha, então a cadeia já está inserida
-        1.2) se não é uma folha, então a cadeia não está inserida
-    2) dar um match parcial
-        2.1) se a cadeia é maior que o label do nó, consome os caracteres e busca com o resto
-        2.2) se a cadeia é menor, então a cadeia não está inserida
-    3) não dar match algum
 
+    1) se cadeia é igual ao label e o nó é um fim de cadeia, achou
+    
     se não é igual:
-    1) cadeia e label têm o mesmo tamanho. então iguais é sempre < cadeia.length e < label.length
-        1.1) iguais == 0
-             
-        1.2) iguais > 0
-
-    2) cadeia e label têm tamanhos diferentes
+    2) têm caracteres em comum, então consome e procura o resto da cadeia nos filhos do nó
+    3) não têm caracteres em comum, então não achou
 
     */
+
     unsigned int iguais = qntdIguais(cadeia, this->label);
     if (cadeia == this->label && this->fimDeCadeia){ //match
         return this;
