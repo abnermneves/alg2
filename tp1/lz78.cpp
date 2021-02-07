@@ -5,6 +5,7 @@
 
 void compressao(std::string fin, std::string fout){
     std::ifstream file(fin);
+    std::ofstream out(fout);
 
     if (!file.is_open())
         return;
@@ -23,7 +24,7 @@ void compressao(std::string fin, std::string fout){
         }
         else {
             codigo = d.codigo(cadeia);
-            std::cout << "(" << codigo << ", '" << c << "')";
+            out << "(" << codigo << ", '" << c << "')";
             d.inserir(cadeia + c);
             cadeia = "";
         }

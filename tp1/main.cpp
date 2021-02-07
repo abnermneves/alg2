@@ -16,6 +16,11 @@ int main (int argc, char* argv[]) {
     std::string fin, fout;
     fin = argv[2];
 
+    if (argc == 5 && argv[3] == "-o")
+        fout = argv[4];
+    else
+        fout = fin + ".z78";
+
     if (operacao == 'c'){
         compressao(fin, fout);
     } else if (operacao == 'd'){
