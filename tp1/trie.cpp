@@ -24,6 +24,12 @@ No* Trie::buscar(std::string cadeia){
     return res;
 }
 
+std::string Trie::buscarPorCodigo(int codigo){
+    std::string cadeia = this->raiz->buscarPorCodigo(codigo, this->raiz->getLabel());
+    
+    return cadeia;
+}
+
 int Trie::codigo(std::string cadeia){
     No* res = this->buscar(cadeia);
     int c;

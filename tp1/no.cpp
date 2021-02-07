@@ -27,14 +27,20 @@ No::~No(){
 
 }
 
-/*
-bool No::fimDeCadeia(){
-    if (this->filhos->size() == 0)
-        return true;
-    else
-        return false;
+std::string No::buscarPorCodigo(int codigo, std::string prefixo){
+    if (this->codigo == codigo)
+        return prefixo + this->label;
+    
+    std::string cadeia;
+    for (auto it = this->filhos->begin(); it != this->filhos->end(); it++){
+        cadeia = (*it)->buscarPorCodigo(codigo, this->label);
+        if (!cadeia.empty()){
+            return prefixo + cadeia;
+        }
+    }
+
+    return "";
 }
-*/
 
 No* No::buscar(std::string cadeia){
     /*

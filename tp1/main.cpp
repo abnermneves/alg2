@@ -60,7 +60,13 @@ int main (int argc, char* argv[]) {
     t.inserir("ize");
     t.inserir("ze");
     t.inserir("e");
-    t.imprimir();
+    t.imprimirCadeias();
+    t.buscarPorCodigo(0);
+    t.buscarPorCodigo(4);
+    t.buscarPorCodigo(2);
+    t.buscarPorCodigo(1);
+    t.buscarPorCodigo(3);
+    t.buscarPorCodigo(123);
     */
     /*
     t.buscar("cabeça");

@@ -18,6 +18,7 @@ public:
     ~No();
     //bool fimDeCadeia();
     No* buscar(std::string cadeia);
+    std::string buscarPorCodigo(int codigo, std::string prefixo);
     void inserir(std::string cadeia, int codigo);
     void imprimir();
     void imprimirCadeias(std::string prefixo);
