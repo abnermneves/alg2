@@ -16,10 +16,18 @@ int main (int argc, char* argv[]) {
     std::string fin, fout;
     fin = argv[2];
 
-    if (argc == 5 && argv[3] == "-o")
+    if (argc == 5 && argv[3] == "-o"){
         fout = argv[4];
-    else
-        fout = fin + ".z78";
+    }
+    else if (operacao == 'c'){
+        fout = fin;
+        if (fin.substr(fin.size()-4) == ".txt")
+            fout = fin.substr(0, fin.size()-4);
+        fout = fout + ".z78";
+    }
+    else if (operacao == 'd'){
+        fout = fin.substr(0, fin.size()-4) + ".txt";
+    }
 
     if (operacao == 'c'){
         compressao(fin, fout);

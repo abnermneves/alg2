@@ -6,7 +6,7 @@
 
 void compressao(std::string fin, std::string fout){
     std::ifstream file(fin);
-    std::ofstream out(fout);
+    std::ofstream fileout(fout);
 
     if (!file.is_open())
         return;
@@ -24,7 +24,7 @@ void compressao(std::string fin, std::string fout){
         }
         else {
             codigo = d.codigo(cadeia);
-            out << "(" << codigo << ", '" << c << "')";
+            fileout << "(" << codigo << ", '" << c << "')";
             d.inserir(cadeia + c);
             cadeia = "";
         }
@@ -32,11 +32,14 @@ void compressao(std::string fin, std::string fout){
     std::cout << std::endl;
     d.imprimirCadeias();
     file.close();
+    fileout.close();
 }
 
 void decompressao(std::string fin, std::string fout){
     FILE* file;
+    FILE* fileout;
     file = fopen (fin.c_str(), "r");
+    fileout = fopen(fout.c_str(), "w");
     if (file == nullptr)
         return;
 
@@ -48,7 +51,11 @@ void decompressao(std::string fin, std::string fout){
 
     while (fscanf(file, "(%d, '%c')", &codigo, &c) == 2){
         std::cout << codigo << " " << c << std::endl;
+        cadeia = d.buscarPorCodigo(codigo);
+        d.inserir(cadeia + c);
+        fprintf(fileout, "%s%c", cadeia.c_str(), c);
     }
 
     fclose (file);
+    fclose(fileout);
 }
