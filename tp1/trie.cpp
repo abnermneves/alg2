@@ -8,7 +8,7 @@ Trie::Trie(){
 }
 
 Trie::~Trie(){
-
+    delete this->raiz;
 }
 
 void Trie::inserir(std::string cadeia){

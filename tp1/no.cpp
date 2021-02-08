@@ -24,7 +24,9 @@ No::No(std::string label, bool fimDeCadeia, int codigo, std::vector<No*>* filhos
 }
 
 No::~No(){
-
+    for (auto it = this->filhos->begin(); it != this->filhos->end(); it++)
+        delete (*it);
+    delete filhos;
 }
 
 std::string No::buscarPorCodigo(int codigo, std::string prefixo){
