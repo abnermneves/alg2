@@ -9,10 +9,10 @@ public:
     float v; // value
     float w; // weight
     float b; // bound
-    std::vector<unsigned int> s; // solution
+    std::string s; // solution
 
     Node(std::string label, int l, float v, float w,
-         float b, std::vector<unsigned int> s);
+         float b, std::string s);
     
     void imprimir();
 };

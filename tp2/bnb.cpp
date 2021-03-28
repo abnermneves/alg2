@@ -2,30 +2,30 @@
 
 float bnbKnapsack(unsigned int n, float wmax, std::vector<Item*>* itens) {
     Item* item = itens->at(0);
-    std::vector<unsigned int> solution;
     std::string solucao = "";
-    Node root = Node("Nó 0", 0, 0, 0, wmax * item->vw, solution);
+    Node root = Node("Nó 0", 0, 0, 0, wmax * item->vw, "");
     std::priority_queue<Node*, std::vector<Node*>, bound_comparator> queue;
     queue.push(&root);
     float best = 0;
 
-    unsigned int cont = 0;
+    unsigned int cont = 1;
 
     while (!queue.empty()) {
         Node* node = queue.top();
         queue.pop();
+        std::string label = node->label;
         int level = node->l;
         float value = node->v;
         float weight = node->w;
         float bound = node->b;
+        std::string solution = node->s;
 
         //node->imprimir();
 
         if (level == n-1) {
             if (best < value) {
                 best = value;
-                solucao = node->label;
-                std::copy(node->s.begin(), node->s.end()--, solution.begin());
+                solucao = solution;
             }
         }
         else if (bound > best) {
@@ -39,23 +39,24 @@ float bnbKnapsack(unsigned int n, float wmax, std::vector<Item*>* itens) {
 
             //if feasible and has a better bound than current solution
             if (((weight + itens->at(level)->w) < wmax) && with > best) { // acho que é at level só
-                std::vector<unsigned int> sol;
-                sol = node->s;
-                sol.push_back(level);
-                std::string label = "Nó " + std::to_string(cont) + ": " +  node->label + std::to_string(level) + " ";
-                Node no = Node(label, level + 1, value + itens->at(level)->v,
-                               weight + itens->at(level)->w, with, sol);
+                Node no = Node("Nó " + std::to_string(cont),
+                               level + 1,
+                               value + itens->at(level)->v,
+                               weight + itens->at(level)->w,
+                               with,
+                               solution + " " + std::to_string(level));
                 queue.push(&no);
                 cont++;
 
                 no.imprimir();
             }
             if (wout > best) {
-                std::string label2 = "Nó " + std::to_string(cont) + ": " +  node->label;
-                std::vector<unsigned int> sol2(node->s.size());
-                //sol2 = node->s;
-                std::copy(node->s.begin(), node->s.end()--, sol2.begin());
-                Node no2 = Node(label2, level + 1, value, weight, wout, sol2);
+                Node no2 = Node("Nó " + std::to_string(cont),
+                                level + 1,
+                                value,
+                                weight,
+                                wout,
+                                solution);
                 queue.push(&no2);
                 cont++;
 
@@ -80,8 +81,6 @@ float bnbKnapsack(unsigned int n, float wmax, std::vector<Item*>* itens) {
     }
     
     std::cout << "Solução: " << best << "\n" << solucao <<  std::endl;
-    for (unsigned int i = 0; i < solution.size(); i++){
-        std::cout << solution.at(i) << " " << std::endl;
-    }
+
     return best;
 }
