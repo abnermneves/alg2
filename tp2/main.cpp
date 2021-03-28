@@ -26,17 +26,18 @@ int main (int argc, char* argv[]) {
     unsigned int n, wmax, w, v;
     file >> n >> wmax;
 
-    std::priority_queue<Item*,  std::vector<Item*>, vw_comparator> itens;
+    std::vector<Item*> itens;
 
     for (unsigned int i = 0; i < n; i++) {
         file >> v >> w;
-        itens.push(new Item(w, v));
+        itens.push_back(new Item(w, v));
     }
+
+    std::sort(itens.begin(), itens.end(), vw_comparator());
     
     for (unsigned int i = 0; i < n; i++){
-        auto ale = itens.top();
-        std::cout << i << " " << ale->w << " " << ale->v << " " << ale->vw << std::endl;
-        itens.pop();
+        Item* item = itens.at(i);
+        std::cout << i << " " << item->w << " " << item->v << " " << item->vw << std::endl;
     }
 
     file.close();

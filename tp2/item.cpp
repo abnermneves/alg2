@@ -8,5 +8,5 @@ Item::Item(unsigned int w, unsigned int v) {
 
 
 bool vw_comparator::operator()(const Item* a, const Item* b) const {
-    return a->vw < b->vw;
+    return a->vw > b->vw;
 }
