@@ -1,9 +1,9 @@
 #include "item.h"
 
-Item::Item(unsigned int w, unsigned int v) {
+Item::Item(float w, float v) {
     this->w = w;
     this->v = v;
-    this->vw = static_cast<float>(v) / static_cast<float>(w);
+    this->vw = w == 0 ? 0 : v / w;
 }
 
 

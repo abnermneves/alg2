@@ -1,10 +1,10 @@
 class Item {
 public:
-    unsigned int w; // peso
-    unsigned int v; // valor
+    float w; // peso
+    float v; // valor
     float vw; // valor/peso
 
-    Item(unsigned int w, unsigned int v);
+    Item(float w, float v);
 };
 
 struct vw_comparator {

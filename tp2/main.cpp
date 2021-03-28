@@ -23,7 +23,7 @@ int main (int argc, char* argv[]) {
 
 //-------------------------- DECLARAÇÃO E LEITURA ----------------------//
 
-    unsigned int n, wmax, w, v;
+    float n, wmax, w, v;
     file >> n >> wmax;
 
     std::vector<Item*> itens;
@@ -35,13 +35,12 @@ int main (int argc, char* argv[]) {
     file.close();
 
     std::sort(itens.begin(), itens.end(), vw_comparator());
-    
     std::cout << n << " " << wmax << std::endl;
     for (unsigned int i = 0; i < n; i++){
         Item* item = itens.at(i);
         std::cout << i << " " << item->w << " " << item->v << " " << item->vw << std::endl;
     }
 
-    unsigned int s = bnbKnapsack(n, wmax, &itens);
+    float s = bnbKnapsack(n, wmax, &itens);
     return 0;
 }

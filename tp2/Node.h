@@ -1,20 +1,22 @@
 #include <vector>
+#include <string>
+#include <iostream>
 
 class Node {
 public:
-    unsigned int l; // level
-    unsigned int v; // value
-    unsigned int w; // weight
-    unsigned int b; // bound
+    std::string label;
+    int l; // level
+    float v; // value
+    float w; // weight
+    float b; // bound
     std::vector<unsigned int> s; // solution
 
-    Node(unsigned int l, unsigned int v, unsigned int w,
-         unsigned int b, std::vector<unsigned int> s);
-
-    Node(unsigned int l, unsigned int v, unsigned int w,
-         unsigned int b);
+    Node(std::string label, int l, float v, float w,
+         float b, std::vector<unsigned int> s);
+    
+    void imprimir();
 };
 
 struct bound_comparator {
-    bool operator()(const Node* a, const Node* b) const;
+    bool operator()(const Node* n1, const Node* n2) const;
 };

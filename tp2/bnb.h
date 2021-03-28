@@ -5,4 +5,4 @@
 #include <algorithm>
 #include <iostream>
 
-unsigned int bnbKnapsack(unsigned int n, unsigned int wmax, std::vector<Item*>* itens);
+float bnbKnapsack(unsigned int n, float wmax, std::vector<Item*>* itens);
