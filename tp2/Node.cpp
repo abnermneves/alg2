@@ -21,5 +21,5 @@ void Node::imprimir(){
 }
 
 bool bound_comparator::operator()(const Node* n1, const Node* n2) const {
-    return n1->b < n2->b;
+    return n1->b > n2->b;
 }
