@@ -38,7 +38,7 @@ int main (int argc, char* argv[]) {
     std::cout << n << " " << wmax << std::endl;
     for (unsigned int i = 0; i < n; i++){
         Item* item = itens.at(i);
-        std::cout << i << " " << item->w << " " << item->v << " " << item->vw << std::endl;
+        std::cout << i << " " << item->v << " " << item->w << " " << item->vw << std::endl;
     }
 
     float s = bnbKnapsack(n, wmax, &itens);

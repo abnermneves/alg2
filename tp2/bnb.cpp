@@ -13,11 +13,10 @@ float bnbKnapsack(unsigned int n, float wmax, std::vector<Item*>* itens) {
     while (!queue.empty()) {
         std::sort(queue.begin(), queue.end(), bound_comparator());
         
-        std::cout << "\n\nApós inserir o nó " + std::to_string(cont) + "\n\n";
-
-        for (auto it = queue.begin(); it != queue.end(); it++){
-            (*it)->imprimir();
-        }
+        // std::cout << "\n\nApós inserir o nó " + std::to_string(cont) + "\n\n";
+        // for (auto it = queue.begin(); it != queue.end(); it++){
+        //     (*it)->imprimir();
+        // }
 
         Node* node = queue.at(0);
         queue.erase(queue.begin());
