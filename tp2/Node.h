@@ -9,7 +9,7 @@ public:
     std::vector<unsigned int> s; // solution
 
     Node(unsigned int l, unsigned int v, unsigned int w,
-         unsigned int b, unsigned int s_include);
+         unsigned int b, std::vector<unsigned int> s);
 
     Node(unsigned int l, unsigned int v, unsigned int w,
          unsigned int b);

@@ -3,7 +3,7 @@
 #include <queue>
 #include <vector>
 #include <algorithm>
-#include "funcoes.h"
+#include "bnb.h"
 
 int main (int argc, char* argv[]) {
 
@@ -32,14 +32,16 @@ int main (int argc, char* argv[]) {
         file >> v >> w;
         itens.push_back(new Item(w, v));
     }
+    file.close();
 
     std::sort(itens.begin(), itens.end(), vw_comparator());
     
+    std::cout << n << " " << wmax << std::endl;
     for (unsigned int i = 0; i < n; i++){
         Item* item = itens.at(i);
         std::cout << i << " " << item->w << " " << item->v << " " << item->vw << std::endl;
     }
 
-    file.close();
+    unsigned int s = bnbKnapsack(n, wmax, &itens);
     return 0;
 }
